@@ -1,4 +1,3 @@
-require 'pp'
 module Parse
 
   # Parse a JSON representation into a fully instantiated
@@ -7,7 +6,7 @@ module Parse
   # @param class_name [Object]
   # @param obj [Object]
   def Parse.parse_json(class_name, obj)
-    if obj.nil?
+    v = if obj.nil?
       nil
 
     # Array
@@ -30,6 +29,9 @@ module Parse
     else
       obj
     end
+
+    Parse.client.logger.info "parsed #{obj.inspect} into #{v.inspect}"
+    v
   end
 
   def Parse.parse_datatype(obj)
