@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = "parse-ruby-client"
-  s.version = "0.1.15.ericcj.8"
+  s.version = "0.1.15.ericcj.9"
 
   s.required_rubygems_version = Gem::Requirement.new("> 1.3.1") if s.respond_to? :required_rubygems_version=
   s.authors = ["Alan deLevie", "Adam Alpern"]
@@ -30,12 +30,14 @@ Gem::Specification.new do |s|
     "fixtures/vcr_cassettes/test_acls_arent_objects.yml",
     "fixtures/vcr_cassettes/test_array_add.yml",
     "fixtures/vcr_cassettes/test_array_add_pointerizing.yml",
+    "fixtures/vcr_cassettes/test_array_add_unique.yml",
     "fixtures/vcr_cassettes/test_batch_create_object.yml",
     "fixtures/vcr_cassettes/test_batch_delete_object.yml",
     "fixtures/vcr_cassettes/test_batch_run.yml",
     "fixtures/vcr_cassettes/test_batch_update_object.yml",
     "fixtures/vcr_cassettes/test_circular_save.yml",
     "fixtures/vcr_cassettes/test_created_at.yml",
+    "fixtures/vcr_cassettes/test_decrement.yml",
     "fixtures/vcr_cassettes/test_deep_parse.yml",
     "fixtures/vcr_cassettes/test_destroy.yml",
     "fixtures/vcr_cassettes/test_eq_pointerize.yml",
