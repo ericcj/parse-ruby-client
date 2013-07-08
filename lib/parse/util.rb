@@ -1,4 +1,3 @@
-require 'pp'
 module Parse
 
   # Parse a JSON representation into a fully instantiated
