@@ -26,6 +26,8 @@ Parse.init :application_id => "<your_app_id>",
 
 [![Build Status](https://travis-ci.org/adelevie/parse-ruby-client.png?branch=master)](https://travis-ci.org/adelevie/parse-ruby-client)
 
+[![Code Climate](https://codeclimate.com/github/adelevie/parse-ruby-client.png)](https://codeclimate.com/github/adelevie/parse-ruby-client)
+
 **Table of Contents**  *generated with [DocToc](http://doctoc.herokuapp.com/)*
 
 - [Summary](#summary)
@@ -273,15 +275,11 @@ batch.run!
 Because manually constructing `"path"` values is repetitive, you can use `Parse::Batch#create_object`, `Parse::Batch#update_object`, and `Parse::Batch#delete_object`. Each of these methods takes an instance of `Parse::Object` as the only argument. Then you just call `Parse::Batch#run!`. For example:
 
 ```ruby
-# making a few GameScore objects
-game_scores = [1, 2, 3, 4, 5].map do |i|
+batch = Parse::Batch.new
+# making a few GameScore objects and adding them to the batch operation.
+[1, 2, 3, 4, 5].each do |i|
   gs = Parse::Object.new("GameScore")
   gs["score"] = "#{i}"
-  gs
-end
-
-batch = Parse::Batch.new
-game_scores.each do |gs|
   batch.create_object(gs)
 end
 batch.run!
@@ -326,7 +324,7 @@ Dates are useful in combination with the built-in createdAt and updatedAt fields
 
 ```ruby
 game_score = Parse::Query.new("GameScore").tap do |q|
-  g.greater_than("createdAt", Parse::Object.new(DateTime.now)) # query options explained in more detail later in this document
+  g.greater_than("createdAt", Parse::Date.new(DateTime.now)) # query options explained in more detail later in this document
 end.get.first
 ```
 
@@ -348,7 +346,7 @@ bytes = Parse::Bytes.new(data)
 The `Pointer` type is used when mobile code sets a `PFObject` (iOS SDK) or `ParseObject` (Android SDK) as the value of another object. It contains the `className` and `objectId` of the referred-to value.
 
 ```ruby
-pointer = Parse::Pointer.new({"className => gameScore", "objectId" => "GeqPWJdNqp"})
+pointer = Parse::Pointer.new({"className" => "gameScore", "objectId" => "GeqPWJdNqp"})
 ```
 
 Pointers to `user` objects have a `className` of `_User`. Prefixing with an underscore is forbidden for developer-defined classes and signifies the class is a special built-in.
